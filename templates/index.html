@@ -27,6 +27,8 @@
 
   <div class="site-wrap">
 
+    {% csrf_token %}
+
 
     <div class="site-navbar py-2">
 
@@ -43,13 +45,13 @@
         <div class="d-flex align-items-center justify-content-between">
           <div class="logo">
             <div class="site-logo">
-              <a href="#" class="js-logo-clone">Pharma</a>
+              <a href="home" class="js-logo-clone">Pharma</a>
             </div>
           </div>
           <div class="main-nav d-none d-lg-block">
             <nav class="site-navigation text-right text-md-center" role="navigation">
               <ul class="site-menu js-clone-nav d-none d-lg-block">
-                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="home">Home</a></li>
                 <li><a href="shop.html">Store</a></li>
                 <li class="has-children">
                   <a href="#">Dropdown</a>
@@ -69,8 +71,13 @@
                     
                   </ul>
                 </li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                {% if user.is_authenticated %}
+                <li>Hello, {{user.first_name}}</li>
+                <li><a href="accounts/logout">Logout</a></li>
+                {% else %}
+                <li><a href="accounts/login">Login</a></li>
+                <li><a href="accounts/register">SignUp</a></li>
+                {% endif %}
               </ul>
             </nav>
           </div>
@@ -358,19 +365,7 @@
 
           </div>
         </div>
-        <div class="row pt-5 mt-5 text-center">
-          <div class="col-md-12">
-            <p>
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-              Copyright &copy;
-              <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made
-              with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank"
-                class="text-primary">Colorlib</a>
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            </p>
-          </div>
-
-        </div>
+        
       </div>
     </footer>
   </div>
@@ -384,6 +379,7 @@
   <script src="{% static 'js/aos.js' %}"></script>
 
   <script src="{% static 'js/main.js' %}"></script>
+
 </body>
 
 </html>
