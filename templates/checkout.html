@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -114,7 +115,7 @@
                 <label for="c_country" class="text-black">Country <span class="text-danger">*</span></label>
                 <select id="c_country" class="form-control">
                   <option value="1">Select a country</option>
-                  <option value="2">bangladesh</option>
+                  <option value="2">India</option>
                   <option value="3">Algeria</option>
                   <option value="4">Afghanistan</option>
                   <option value="5">Ghana</option>
@@ -205,7 +206,7 @@
                       <label for="c_diff_country" class="text-black">Country <span class="text-danger">*</span></label>
                       <select id="c_diff_country" class="form-control">
                         <option value="1">Select a country</option>
-                        <option value="2">bangladesh</option>
+                        <option value="2">India</option>
                         <option value="3">Algeria</option>
                         <option value="4">Afghanistan</option>
                         <option value="5">Ghana</option>
@@ -387,11 +388,11 @@
     </div>
     
 
-    <div class="site-section bg-secondary bg-image" style="background-image: url('images/bg_2.jpg');">
+    <div class="site-section bg-secondary bg-image" style="background-image: url('{% static 'images/bg_2.jpg' %}');">
       <div class="container">
         <div class="row align-items-stretch">
           <div class="col-lg-6 mb-5 mb-lg-0">
-            <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('images/bg_1.jpg');">
+            <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('{% static 'images/bg_1.jpg' %}');">
               <div class="banner-1-inner align-self-center">
                 <h2>Pharma Products</h2>
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem odio voluptatem.
@@ -400,7 +401,7 @@
             </a>
           </div>
           <div class="col-lg-6 mb-5 mb-lg-0">
-            <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('images/bg_2.jpg');">
+            <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('{% static 'images/bg_2.jpg' %}');">
               <div class="banner-1-inner ml-auto  align-self-center">
                 <h2>Rated by Experts</h2>
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem odio voluptatem.
