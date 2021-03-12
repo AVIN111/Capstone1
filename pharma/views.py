@@ -11,5 +11,8 @@ def index(request):
 def cart(request):
     return render(request,"cart.html")
 
+def checkout(request):
+    return render(request,"checkout.html")
+
 def register(request):
     return render(request,'accounts/register.html')
