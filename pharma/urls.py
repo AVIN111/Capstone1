@@ -17,6 +17,9 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.index),
-    path('cart.html', views.cart),
+    path('', views.index,name='pharma-home'),
+    path('cart/', views.cart),
+    path('shop-single/<int:prod_id>',views.shopsingle,name='pharma-shop-single'),
+    path('shop/shop-single/<int:prod_id>',views.shopsingle,name='pharma-shop-single'),
+    path('shop/',views.shop,name='pharma-shop')
 ]
