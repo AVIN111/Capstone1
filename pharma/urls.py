@@ -19,6 +19,7 @@ from . import views
 urlpatterns = [
     path('', views.index,name='pharma-home'),
     path('cart/', views.cart),
+    path('checkout', views.checkout),
     path('shop-single/<int:prod_id>',views.shopsingle,name='pharma-shop-single'),
     path('shop/shop-single/<int:prod_id>',views.shopsingle,name='pharma-shop-single'),
     path('shop/',views.shop,name='pharma-shop')
