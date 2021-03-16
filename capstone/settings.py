@@ -40,11 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
-    'pharma',
-=======
-
->>>>>>> b0b56b907c4346e31c9ae28e17186198ac904b79
 ]
 
 MIDDLEWARE = [
@@ -135,8 +130,4 @@ STATICFILES_DIRS=[
 ]
 STATIC_ROOT=os.path.join(BASE_DIR,'assets')
 MEDIA_URL = '/media/'
-<<<<<<< HEAD
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
-=======
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
->>>>>>> b0b56b907c4346e31c9ae28e17186198ac904b79
