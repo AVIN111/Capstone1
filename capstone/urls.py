@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('pharma.urls')),
+<<<<<<< HEAD
     path('cart/',include('pharma.urls')),
     path('checkout',include('pharma.urls')),
     path('accounts/' ,include('accounts.urls')),
@@ -28,3 +29,12 @@ urlpatterns = [
     
 ]
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+=======
+    path('home',include('pharma.urls')),
+    path('cart/',include('pharma.urls')),
+    path('checkout',include('pharma.urls')),
+    path('accounts/' ,include('accounts.urls')),
+    
+]
+urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+>>>>>>> b0b56b907c4346e31c9ae28e17186198ac904b79
