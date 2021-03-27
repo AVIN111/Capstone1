@@ -1,13 +1,6 @@
 from django.db import models
 
 # Create your models here.
-<<<<<<< Updated upstream
-class Medicine:
-    id:int
-    name:str
-    img:str
-    price:int
-=======
 class Medical_Products(models.Model):
     med_name = models.CharField(max_length=100)
     med_price = models.IntegerField()
@@ -20,4 +13,3 @@ class Medical_Products(models.Model):
 class User_Cart(models.Model):
     user_id = models.CharField(max_length=100)
     med_id = models.CharField(max_length=100)
->>>>>>> Stashed changes
