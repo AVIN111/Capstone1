@@ -13,9 +13,3 @@ class Medical_Products(models.Model):
 class Cart_Items(models.Model):
     item = models.ForeignKey(Medical_Products)
     quantity = models.IntegerField()
-
-class User_Info(models.Model):
-    user_name = models.CharField(max_length=100)
-    user_email = models.CharField(max_length=100)
-    user_phone = models.IntegerField()
-    user_address = models.CharField(max_length=100)
