@@ -10,6 +10,18 @@ class Medical_Products(models.Model):
     med_category = models.CharField(max_length=25)
     med_type = models.CharField(max_length=25) 
 
+<<<<<<< Updated upstream
 class User_Cart(models.Model):
     user_id = models.CharField(max_length=100)
     med_id = models.CharField(max_length=100)
+=======
+class Cart_Items(models.Model):
+    item = models.ForeignKey(Medical_Products)
+    quantity = models.IntegerField()
+
+class User_Info(models.Model):
+    user_name = models.CharField(max_length=100)
+    user_email = models.CharField(max_length=100)
+    user_phone = models.IntegerField()
+    user_address = models.CharField(max_length=100)
+>>>>>>> Stashed changes
