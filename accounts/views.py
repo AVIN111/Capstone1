@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User,auth
+import re
 # Create your views here.
 
 def login(request):
@@ -52,3 +53,9 @@ def register(request):
 def logout(request):
 	auth.logout(request)
 	return redirect('/')
+
+def validateEmail(email):
+    if len(email) > 6:
+        if re.match('\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b', email) != None:
+            return 1
+    return 0
