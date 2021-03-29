@@ -1,4 +1,4 @@
-{% load static %}
+{% load socialaccount %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -802,6 +802,7 @@ input.checkbox:checked:after {
         </div>
     
 				<p>Don't have an Account? <a href="#"> Login Now!</a></p>
+				<p>Login with Google? <a href= "{% provider_login_url 'google' %}"> Google</a></p>
 			</div>
 		</div>
 		
