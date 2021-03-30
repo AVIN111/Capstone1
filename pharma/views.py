@@ -22,3 +22,8 @@ def shopsingle(request,prod_id):
 def shop(request):
     med_prods = Medical_Products.objects.all()
     return render(request,"shop.html",{'med_prods' : med_prods})
+def search(request):
+    item = request.POST['id']
+    med_prods = Medical_Products.objects.filter(med_name=item)
+    print(med_prods)
+    return render(request,"shop.html",{'med_prods' : med_prods})

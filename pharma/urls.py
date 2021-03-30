@@ -18,9 +18,11 @@ from . import views
 
 urlpatterns = [
     path('', views.index,name='pharma-home'),
-    path('cart/', views.cart),
-    path('checkout', views.checkout),
+    path('cart/', views.cart,name = 'pharma-cart'),
+    path('checkout/', views.checkout,name = 'pharma-checkout'),
     path('shop-single/<int:prod_id>',views.shopsingle,name='pharma-shop-single'),
     path('shop/shop-single/<int:prod_id>',views.shopsingle,name='pharma-shop-single'),
-    path('shop/',views.shop,name='pharma-shop')
+    path('shop/',views.shop,name='pharma-shop'),
+    path('search/',views.search,name='pharma-search'),
+    path('search/shop-single/<int:prod_id>',views.shopsingle,name='pharma-shop-single'),
 ]
