@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User,auth
+from django.contrib.auth.password_validation import validate_password
 import re
 # Create your views here.
 
@@ -28,6 +29,7 @@ def register(request):
 		email = request.POST['email']
 		password1 = request.POST['password1']
 		password2 = request.POST['password2']
+		validate_password(password1)
 
 		if password1==password2:
 			if User.objects.filter(username=username).exists():
