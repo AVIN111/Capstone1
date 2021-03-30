@@ -61,9 +61,9 @@
                 role="navigation"
               >
                 <ul class="site-menu js-clone-nav d-none d-lg-block">
-                  <li><a href="{% url 'pharma-home' %}">Home</a></li>
+                  <li><a href="{% url 'pharma:pharma-home' %}">Home</a></li>
                   <li class="active">
-                    <a href="{% url 'pharma-shop' %}">Store</a>
+                    <a href="{% url 'pharma:pharma-shop' %}">Store</a>
                   </li>
                   <li class="has-children">
                     <a href="#">Dropdown</a>
@@ -96,7 +96,7 @@
               <a href="#" class="icons-btn d-inline-block js-search-open"
                 ><span class="icon-search"></span
               ></a>
-              <a href="{% url 'pharma-cart' %}" class="icons-btn d-inline-block bag">
+              <a href="{% url 'pharma:pharma-cart' %}" class="icons-btn d-inline-block bag">
                 <span class="icon-shopping-bag"></span>
                 <span class="number">2</span>
               </a>
@@ -114,7 +114,7 @@
         <div class="container">
           <div class="row">
             <div class="col-md-12 mb-0">
-              <a href="{% url 'pharma-home' %}">Home</a>
+              <a href="{% url 'pharma:pharma-home' %}">Home</a>
               <span class="mx-2 mb-0">/</span>
               <strong class="text-black">Store</strong>
             </div>
