@@ -3,6 +3,7 @@
 <html lang="en">
 
 <head>
+  <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
   <title>Pharma &mdash; Colorlib Template</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,11 +33,21 @@
 
       <div class="search-wrap">
         <div class="container">
+          <hr style="visibility:hidden">
           <a href="#" class="search-close js-search-close"><span class="icon-close2"></span></a>
-          <form action="{% url 'pharma-search' %}" method="post">
+          <form action="{% url 'pharma:pharma-search' %}" method="post">
             {% csrf_token %}
-            <input type="text" class="form-control" placeholder="Search keyword and hit enter..." name="id">
+            <input  id="tags" type="text" class="form-control" placeholder="Search keyword and hit enter..." name="id">
           </form>
+          <script src="{% static 'js/jquery-1.12.4.js' %}"></script>
+          <script src="{% static 'js/jquery-ui.js' %}"></script>
+          <script>
+            $( function() {
+              $( "#tags" ).autocomplete({
+                source: "{% url 'pharma:pharma-home' %}",
+              });
+            } );
+            </script>
         </div>
       </div>
 
@@ -44,14 +55,14 @@
         <div class="d-flex align-items-center justify-content-between">
           <div class="logo">
             <div class="site-logo">
-              <a href="{% url 'pharma-home' %}" class="js-logo-clone">Pharma</a>
+              <a href="{% url 'pharma:pharma-home' %}" class="js-logo-clone">Pharma</a>
             </div>
           </div>
           <div class="main-nav d-none d-lg-block">
             <nav class="site-navigation text-right text-md-center" role="navigation">
               <ul class="site-menu js-clone-nav d-none d-lg-block">
-                <li class="active"><a href="{% url 'pharma-home' %}">Home</a></li>
-                <li><a href="{% url 'pharma-shop' %}">Store</a></li>
+                <li class="active"><a href="{% url 'pharma:pharma-home' %}">Home</a></li>
+                <li><a href="{% url 'pharma:pharma-shop' %}">Store</a></li>
                 <li class="has-children">
                   <a href="#">Dropdown</a>
                   <ul class="dropdown">
@@ -82,7 +93,7 @@
           </div>
           <div class="icons">
             <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
-            <a href="{% url 'pharma-cart' %}" class="icons-btn d-inline-block bag">
+            <a href="{% url 'pharma:pharma-cart' %}" class="icons-btn d-inline-block bag">
               <span class="icon-shopping-bag"></span>
               <span class="number">2</span>
             </a>
@@ -349,8 +360,6 @@
     </footer>
   </div>
 
-  <script src="{% static 'js/jquery-3.3.1.min.js ' %}"></script>
-  <script src="{% static 'js/jquery-ui.js' %}"></script>
   <script src="{% static 'js/popper.min.js'%}"></script>
   <script src="{% static 'js/bootstrap.min.js'%}"></script>
   <script src="{% static 'js/owl.carousel.min.js'%}"></script>
