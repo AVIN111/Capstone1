@@ -3,7 +3,7 @@
 
 <html lang="en">
   <head>
-    <title>Pharma &mdash; Colorlib Template</title>
+    <title>Pharma- Store</title>
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -35,16 +35,20 @@
       <div class="site-navbar py-2">
         <div class="search-wrap">
           <div class="container">
-            <a href="#" class="search-close js-search-close"
-              ><span class="icon-close2"></span
-            ></a>
-            <form action="#" method="post">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Search keyword and hit enter..."
-              />
-            </form>
+            <a href="search/" class="search-close js-search-close"><span class="icon-close2"></span></a>
+          <form action="{% url 'pharma:pharma-search' %}" method="post">
+            {% csrf_token %}
+            <input  id="tags" type="text" class="form-control" placeholder="Search keyword and hit enter..." name="id">
+          </form>
+          <script src="{% static 'js/jquery-1.12.4.js' %}"></script>
+          <script src="{% static 'js/jquery-ui.js' %}"></script>
+          <script>
+            $( function() {
+              $( "#tags" ).autocomplete({
+                source: "{% url 'pharma:pharma-home' %}",
+              });
+            } );
+            </script>
           </div>
         </div>
 
@@ -84,10 +88,10 @@
                   </li>
                   {% if user.is_authenticated %}
                   <li>Hello, {{user.first_name}}</li>
-                  <li><a href="accounts/logout">Logout</a></li>
+                  <li><a href="{% url 'pharma-logout' %}">Logout</a></li>
                   {% else %}
-                  <li><a href="accounts/login">Login</a></li>
-                  <li><a href="accounts/register">SignUp</a></li>
+                  <li><a href="{% url 'pharma-login' %}">Login</a></li>
+                  <li><a href="{% url 'pharma-register' %}">SignUp</a></li>
                   {% endif %}
                 </ul>
               </nav>
@@ -278,22 +282,7 @@
           </div>
           <div class="row pt-5 mt-5 text-center">
             <div class="col-md-12">
-              <p>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                Copyright &copy;
-                <script>
-                  document.write(new Date().getFullYear());
-                </script>
-                All rights reserved | This template is made with
-                <i class="icon-heart" aria-hidden="true"></i> by
-                <a
-                  href="https://colorlib.com"
-                  target="_blank"
-                  class="text-primary"
-                  >Colorlib</a
-                >
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-              </p>
+
             </div>
           </div>
         </div>

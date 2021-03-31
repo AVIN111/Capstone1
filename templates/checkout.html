@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-  <title>Pharma &mdash; Colorlib Template</title>
+  <title>Pharma - Checkout</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -32,10 +32,20 @@
 
       <div class="search-wrap">
         <div class="container">
-          <a href="#" class="search-close js-search-close"><span class="icon-close2"></span></a>
-          <form action="#" method="post">
-            <input type="text" class="form-control" placeholder="Search keyword and hit enter...">
+          <a href="search/" class="search-close js-search-close"><span class="icon-close2"></span></a>
+          <form action="{% url 'pharma:pharma-search' %}" method="post">
+            {% csrf_token %}
+            <input  id="tags" type="text" class="form-control" placeholder="Search keyword and hit enter..." name="id">
           </form>
+          <script src="{% static 'js/jquery-1.12.4.js' %}"></script>
+          <script src="{% static 'js/jquery-ui.js' %}"></script>
+          <script>
+            $( function() {
+              $( "#tags" ).autocomplete({
+                source: "{% url 'pharma:pharma-home' %}",
+              });
+            } );
+            </script>
         </div>
       </div>
 
@@ -43,14 +53,14 @@
         <div class="d-flex align-items-center justify-content-between">
           <div class="logo">
             <div class="site-logo">
-              <a href="home" class="js-logo-clone">Pharma</a>
+              <a href="{% url 'pharma:pharma-home' %}" class="js-logo-clone">Pharma</a>
             </div>
           </div>
           <div class="main-nav d-none d-lg-block">
             <nav class="site-navigation text-right text-md-center" role="navigation">
               <ul class="site-menu js-clone-nav d-none d-lg-block">
-                <li><a href="home">Home</a></li>
-                <li class="active"><a href="shop.html">Store</a></li>
+                <li><a href="{% url 'pharma:pharma-home' %}">Home</a></li>
+                <li class="active"><a href="{% url 'pharma:pharma-shop' %}">Store</a></li>
                 <li class="has-children">
                   <a href="#">Dropdown</a>
                   <ul class="dropdown">
@@ -69,8 +79,13 @@
 
                   </ul>
                 </li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                {% if user.is_authenticated %}
+                <li>Hello, {{user.first_name}}</li>
+                <li><a href="{% url 'pharma-logout' %}">Logout</a></li>
+                {% else %}
+                <li><a href="{% url 'pharma-login' %}">Login</a></li>
+                <li><a href="{% url 'pharma-register' %}">SignUp</a></li>
+                {% endif %}
               </ul>
             </nav>
           </div>
@@ -91,7 +106,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 mb-0">
-            <a href="home">Home</a> <span class="mx-2 mb-0">/</span>
+            <a href="{% url 'pharma:pharma-home' %}">Home</a> <span class="mx-2 mb-0">/</span>
             <strong class="text-black">Checkout</strong>
           </div>
         </div>

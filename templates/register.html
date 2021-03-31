@@ -779,6 +779,9 @@ input.checkbox:checked:after {
 		<h1>SignUp Form</h1>
 		<div class="main-agileinfo">
 			<div class="agileits-top">
+        {% for message in messages %}
+          <h3 style="color: red;"> {{message}} </h3>
+          {% endfor %}
 				<form action="register" method="POST">
           {% csrf_token %}
           <input class="text" type="text" name="first_name" placeholder="First Name" required="">
@@ -797,11 +800,7 @@ input.checkbox:checked:after {
 					<input type="submit" value="SIGNUP">
 				</form>
         <div>
-          {% for message in messages %}
-          <h3> {{message}} </h3>
-          {% endfor %}
-        </div>
-    
+  
 				<p>Don't have an Account? <a href="#"> Login Now!</a></p>
 				<p>Login with Google? <a href= "{% provider_login_url 'google' %}"> Google</a></p>
 			</div>

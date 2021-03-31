@@ -3,8 +3,8 @@
 <html lang="en">
 
 <head>
-  <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
-  <title>Pharma &mdash; Colorlib Template</title>
+  
+  <title>Pharma - Home</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -34,7 +34,7 @@
       <div class="search-wrap">
         <div class="container">
           <hr style="visibility:hidden">
-          <a href="#" class="search-close js-search-close"><span class="icon-close2"></span></a>
+          <a href="search/" class="search-close js-search-close"><span class="icon-close2"></span></a>
           <form action="{% url 'pharma:pharma-search' %}" method="post">
             {% csrf_token %}
             <input  id="tags" type="text" class="form-control" placeholder="Search keyword and hit enter..." name="id">
@@ -83,10 +83,10 @@
                 </li>
                 {% if user.is_authenticated %}
                 <li>Hello, {{user.first_name}}</li>
-                <li><a href="accounts/logout">Logout</a></li>
+                <li><a href="{% url 'pharma-logout' %}">Logout</a></li>
                 {% else %}
-                <li><a href="accounts/login">Login</a></li>
-                <li><a href="accounts/register">SignUp</a></li>
+                <li><a href="{% url 'pharma-login' %}">Login</a></li>
+                <li><a href="{% url 'pharma-register' %}">SignUp</a></li>
                 {% endif %}
               </ul>
             </nav>
@@ -112,7 +112,7 @@
               <h2 class="sub-title">Effective Medicine, New Medicine Everyday</h2>
               <h1>Welcome To Pharma</h1>
               <p>
-                <a href="#" class="btn btn-primary px-5 py-3">Shop Now</a>
+                <a href="{% url 'pharma:pharma-shop' %}" class="btn btn-primary px-5 py-3">Shop Now</a>
               </p>
             </div>
           </div>
@@ -190,7 +190,7 @@
         </div>
         <div class="row mt-5">
           <div class="col-12 text-center">
-            <a href="shop.html" class="btn btn-primary px-4 py-3">View All Products</a>
+            <a href="{% url 'pharma:pharma-shop' %}" class="btn btn-primary px-4 py-3">View All Products</a>
           </div>
         </div>
       </div>
@@ -345,14 +345,7 @@
         </div>
         <div class="row pt-5 mt-5 text-center">
           <div class="col-md-12">
-            <p>
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-              Copyright &copy;
-              <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made
-              with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank"
-                class="text-primary">Colorlib</a>
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            </p>
+
           </div>
 
         </div>
