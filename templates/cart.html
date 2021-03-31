@@ -51,8 +51,8 @@
           <div class="main-nav d-none d-lg-block">
             <nav class="site-navigation text-right text-md-center" role="navigation">
               <ul class="site-menu js-clone-nav d-none d-lg-block">
-                <li><a href="home">Home</a></li>
-                <li class="active"><a href="shop.html">Store</a></li>
+                <li><a href="{% url 'pharma:pharma-home' %}">Home</a></li>
+                <li class="active"><a href="{% url 'pharma:pharma-shop' %}">Store</a></li>
                 <li class="has-children">
                   <a href="#">Dropdown</a>
                   <ul class="dropdown">
@@ -138,7 +138,7 @@
                       </div>
     
                     </td>
-                    <td>$49.00</td>
+                    <td>$55.00</td>
                     <td><a href="#" class="btn btn-primary height-auto btn-sm">X</a></td>
                   </tr>
     
