@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from . models import Medical_Products
+from . models import Medical_Products,Product_Reviews
 import json
 
 from django.http import JsonResponse
@@ -22,13 +22,24 @@ def cart(request):
 
 def checkout(request):
     return render(request,"checkout.html")
+# def reviews(request):
 
 def register(request):
     return render(request,'accounts/register.html')
 
 def shopsingle(request,prod_id):
+    # product = get_object_or_404(Medical_Products, slug=prod_id)
+    # prod_id = Medical_Products.objects.get(id = prod_id)
     prod_id = Medical_Products.objects.get(id = prod_id)
-    return render(request,"shop-single.html",{'prod':prod_id})
+    review = Product_Reviews.objects.all()
+    if request.method == 'POST' and request.user.is_authenticated:
+        one_word = request.POST['choice']
+        content = request.POST['content']
+        rating = int(request.POST['rating'])
+        review1 = Product_Reviews.objects.create(one_word_review = one_word,content=content,rating= rating,product = prod_id,user = request.user)
+        
+    review = Product_Reviews.objects.all()
+    return render(request,"shop-single.html",{'prod':prod_id,'reviews':review})
     
 def shop(request):
     med_prods = Medical_Products.objects.all()
