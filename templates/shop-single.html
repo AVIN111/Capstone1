@@ -91,7 +91,7 @@
           </div>
           <div class="icons">
             <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
-            <a href="cart.html" class="icons-btn d-inline-block bag">
+            <a href="{% url 'pharma:pharma-cart'  %}" class="icons-btn d-inline-block bag">
               <span class="icon-shopping-bag"></span>
               <span class="number">2</span>
             </a>
@@ -126,22 +126,25 @@
 
             <p>  <strong class="text-primary h4">₹ {{prod.med_price}}</strong></p>
 
-            
-            
-            <div class="mb-5">
-              <div class="input-group mb-3" style="max-width: 220px;">
-                <div class="input-group-prepend">
-                  <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+            <form action="shop-singleform/{{prod.id}}" method="POST">
+              {% csrf_token %}
+              <div class="mb-5">
+                <div class="input-group mb-3" style="max-width: 220px;">
+                  <div class="input-group-prepend">
+                    <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                  </div>
+                  <input type="text" class="form-control text-center" value="1" name="quantity" placeholder=""
+                    aria-label="Example text with button addon" aria-describedby="button-addon1" min="1" max="15">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                  </div>
                 </div>
-                <input type="text" class="form-control text-center" value="1" placeholder=""
-                  aria-label="Example text with button addon" aria-describedby="button-addon1">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                </div>
+              
+      
               </div>
-    
-            </div>
-            <p><a href="cart.html" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Add To Cart</a></p>
+             
+              <input type="submit" value="ADD TO CART" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">
+            </form>
 
             <div class="mt-5">
               <ul class="nav nav-pills mb-3 custom-pill" id="pills-tab" role="tablist">

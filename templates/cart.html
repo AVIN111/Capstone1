@@ -93,7 +93,7 @@
           </div>
           <div class="icons">
             <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
-            <a href="cart" class="icons-btn d-inline-block bag">
+            <a href="{% url 'pharma:pharma-cart' %}" class="icons-btn d-inline-block bag">
               <span class="icon-shopping-bag"></span>
               <span class="number">2</span>
             </a>
@@ -128,60 +128,38 @@
                     <th class="product-price">Price</th>
                     <th class="product-quantity">Quantity</th>
                     <th class="product-total">Total</th>
-                    <th class="product-remove">Remove</th>
                   </tr>
                 </thead>
                 <tbody>
+                  {% for item in cart %}
+                  {% if user.is_authenticated %}
                   <tr>
                     <td class="product-thumbnail">
-                      <img src="{% static 'images/product_02.png' %}" alt="Image" class="img-fluid">
+                      <img src="{{item.product.med_img.url}}" alt="Image" class="img-fluid">
                     </td>
                     <td class="product-name">
-                      <h2 class="h5 text-black">Ibuprofen</h2>
+                      <h2 class="h5 text-black">{{item.product.med_name}}</h2>
                     </td>
-                    <td>$55.00</td>
+                    <td>{{item.product.med_price}}</td>
                     <td>
                       <div class="input-group mb-3" style="max-width: 120px;">
-                        <div class="input-group-prepend">
-                          <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                        </div>
-                        <input type="text" class="form-control text-center" value="1" placeholder=""
+                        
+                        <input type="text" class="form-control text-center" value="{{item.quantity}}" placeholder=""
                           aria-label="Example text with button addon" aria-describedby="button-addon1">
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                        </div>
+                        
                       </div>
     
                     </td>
-                    <td>$55.00</td>
-                    <td><a href="#" class="btn btn-primary height-auto btn-sm">X</a></td>
+                    <td>{% widthratio item.product.med_price 1 item.quantity %}</td>
                   </tr>
+                  {% else %}
+                  
+                  {% endif %}
+                  {% empty %}
+                  <h2>No products are added yet</h2>
+                  {% endfor %}
     
-                  <tr>
-                    <td class="product-thumbnail">
-                      <img src="{% static 'images/product_01.png' %}" alt="Image" class="img-fluid">
-                    </td>
-                    <td class="product-name">
-                      <h2 class="h5 text-black">Bioderma</h2>
-                    </td>
-                    <td>$49.00</td>
-                    <td>
-                      <div class="input-group mb-3" style="max-width: 120px;">
-                        <div class="input-group-prepend">
-                          <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                        </div>
-                        <input type="text" class="form-control text-center" value="1" placeholder=""
-                          aria-label="Example text with button addon" aria-describedby="button-addon1">
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                        </div>
-                      </div>
-    
-                    </td>
-                    <td>$49.00</td>
-                    <td><a href="#" class="btn btn-primary height-auto btn-sm">X</a></td>
-                  </tr>
-                </tbody>
+                  </tbody>
               </table>
             </div>
           </form>
@@ -190,9 +168,7 @@
         <div class="row">
           <div class="col-md-6">
             <div class="row mb-5">
-              <div class="col-md-6 mb-3 mb-md-0">
-                <button class="btn btn-primary btn-md btn-block">Update Cart</button>
-              </div>
+             
               <div class="col-md-6">
                 <button class="btn btn-outline-primary btn-md btn-block">Continue Shopping</button>
               </div>
@@ -223,7 +199,7 @@
                     <span class="text-black">Subtotal</span>
                   </div>
                   <div class="col-md-6 text-right">
-                    <strong class="text-black">$104.00</strong>
+                    <strong class="text-black">{{total}}</strong>
                   </div>
                 </div>
                 <div class="row mb-5">
@@ -231,7 +207,7 @@
                     <span class="text-black">Total</span>
                   </div>
                   <div class="col-md-6 text-right">
-                    <strong class="text-black">$104.00</strong>
+                    <strong class="text-black">{{total}}</strong>
                   </div>
                 </div>
     

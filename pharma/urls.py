@@ -25,4 +25,7 @@ urlpatterns = [
     path('shop/',views.shop,name='pharma-shop'),
     path('search/',views.search,name='pharma-search'),
     path('search/shop-single/<int:prod_id>',views.shopsingle,name='pharma-shop-single'),
+    path('shop-single/cart', views.cart,name = 'pharma-single-cart'),
+    path('shop-single/shop-singleform/<int:prod_id>',views.shopsingleform,name='pharma-shop-singleform'),
+    path('shop/shop-single/shop-singleform/<int:prod_id>',views.shopsingleform,name='pharma-shop-singleform'),
 ]

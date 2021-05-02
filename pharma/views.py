@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from . models import Medical_Products,Product_Reviews
+from . models import Medical_Products,Product_Reviews,Shop_Cart
 import json
 
 from django.http import JsonResponse
@@ -18,7 +18,15 @@ def autocomplete(request):
     return render(request,"index.html",{'med_prods' : med_prods})
 
 def cart(request):
-    return render(request,"cart.html")
+    if not request.user.is_authenticated:
+        return render(request,"cart.html")
+    else:
+        cart1 = Shop_Cart.objects.all().filter(user = request.user)
+        total = 0
+        for item in cart1:
+            total += item.product.med_price * item.quantity
+            print(total)
+        return render(request,"cart.html",{'cart':cart1,'total':total})
 
 def checkout(request):
     return render(request,"checkout.html")
@@ -36,11 +44,25 @@ def shopsingle(request,prod_id):
         one_word = request.POST['choice']
         content = request.POST['content']
         rating = int(request.POST['rating'])
+        
+        
         review1 = Product_Reviews.objects.create(one_word_review = one_word,content=content,rating= rating,product = prod_id,user = request.user)
         
     review = Product_Reviews.objects.all()
     return render(request,"shop-single.html",{'prod':prod_id,'reviews':review})
-    
+def shopsingleform(request,prod_id):
+    # product = get_object_or_404(Medical_Products, slug=prod_id)
+    # prod_id = Medical_Products.objects.get(id = prod_id)
+    prod_id = Medical_Products.objects.get(id = prod_id)
+    review = Product_Reviews.objects.all()
+    if request.method == 'POST' and request.user.is_authenticated:
+        
+        quantity = int(request.POST['quantity'])
+        cart1 = Shop_Cart.objects.create(quantity = quantity,user=request.user,product=prod_id)
+        return render(request,"shop-single.html",{'prod':prod_id})
+    else:
+        return render(request,"register.html")
+
 def shop(request):
     med_prods = Medical_Products.objects.all()
     return render(request,"shop.html",{'med_prods' : med_prods})

@@ -91,7 +91,7 @@
           </div>
           <div class="icons">
             <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
-            <a href="cart" class="icons-btn d-inline-block bag">
+            <a href="{% url 'pharma:pharma-cart' %}" class="icons-btn d-inline-block bag">
               <span class="icon-shopping-bag"></span>
               <span class="number">2</span>
             </a>
@@ -112,13 +112,14 @@
         </div>
       </div>
     </div>
-
     <div class="site-section">
       <div class="container">
         <div class="row mb-5">
           <div class="col-md-12">
             <div class="bg-light rounded p-3">
-              <p class="mb-0">Returning customer? <a href="#" class="d-inline-block">Click here</a> to login</p>
+              {%if not user.is_authenticated %}
+              <p class="mb-0">Returning customer? <a href="{% url 'pharma-login' %}" class="d-inline-block">Click here</a> to login</p>
+              {% endif %}
             </div>
           </div>
         </div>
