@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.forms import ModelForm
+from django.contrib.postgres.fields import ArrayField
 # Create your models here.
 class Medical_Products(models.Model):
     med_name = models.CharField(max_length=100)
@@ -19,8 +20,14 @@ class Product_Reviews(models.Model):
     rating = models.IntegerField()
 
     date_added = models.DateTimeField(auto_now_add=True)
-
-
+class Payment(models.Model):
+    amount = models.CharField(max_length=100)
+    names = ArrayField(models.CharField(max_length=550,blank=True),default=list)
+    quantity = ArrayField(models.IntegerField(blank=True),default=list)
+    user = models.ForeignKey(User, related_name='payment', on_delete=models.SET_NULL,null=True)
+    order_id = models.CharField(max_length=100,blank=True)
+    razorpay_payment_id = models.CharField(max_length=100,blank=True)
+    paid = models.BooleanField(default=False)
 class Shop_Cart(models.Model):
     user = models.ForeignKey(User, related_name='cart', on_delete=models.SET_NULL,null=True)
     product = models.ForeignKey(Medical_Products, related_name='cart', on_delete=models.SET_NULL,null=True)

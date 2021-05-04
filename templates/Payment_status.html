@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment_status</title>
+</head>
+<body>
+
+{% block content %}
+
+    {% if status %}
+        <div class="container" style="text-align: center;">
+            <i class="fa fa-check-circle" aria-hidden="true" style="font-size: 80px; color: green;"></i>
+        </div>
+        <h2 style="text-align: center;">Thank you. Your payment was successful.</h2>
+    {% else %}
+        <h2 style="text-align: center;">Your Payment is failed! Try again.</h2>
+    {% endif %}
+
+    <div class="text-center mt-5">
+        <a href="{% url 'pharma:pharma-home' %}" class="btn btn-primary" role="button">Continue shopping</a>
+    </div>
+{% endblock %}
+</body>
+</html>

@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.urls import path
 from . import views
+from .views import medicine_payment,payment_status
 app_name='pharma'
 urlpatterns = [
     path('', views.autocomplete,name='pharma-home'),
@@ -26,6 +27,8 @@ urlpatterns = [
     path('search/',views.search,name='pharma-search'),
     path('search/shop-single/<int:prod_id>',views.shopsingle,name='pharma-shop-single'),
     path('shop-single/cart', views.cart,name = 'pharma-single-cart'),
+    path('checkout/payment/payment-status/',views.payment_status, name='payment-status'),
+    path('checkout/payment/', views.medicine_payment, name='payment'),
     path('shop-single/shop-singleform/<int:prod_id>',views.shopsingleform,name='pharma-shop-singleform'),
     path('shop/shop-single/shop-singleform/<int:prod_id>',views.shopsingleform,name='pharma-shop-singleform'),
 ]
